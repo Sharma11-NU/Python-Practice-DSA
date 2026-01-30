@@ -1,14 +1,12 @@
 from Read_Fasta_using_Hash_map import read_fasta
 
-# Read proteins
 proteins = read_fasta("data/protein.faa")
 seq_ids = list(proteins.keys())
 
-# Clean sequences
 seq1 = proteins[seq_ids[0]].replace(" ", "").replace("\n", "")
 seq2 = proteins[seq_ids[5]].replace(" ", "").replace("\n", "")
 
-def lcs(s1, s2):
+def lcs(s1, s2):                      # Alighnment  # Fabonicci pattern
     n, m = len(s1), len(s2)
     dp = [[0] * (m + 1) for _ in range(n + 1)]
 
@@ -19,7 +17,7 @@ def lcs(s1, s2):
             else:
                 dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
 
-    return dp[n][m]
+    return dp[n][m]                # Dynamic Programming
 
 if __name__ == "__main__":
     print(f"Comparing {seq_ids[0]} vs {seq_ids[1]}")
